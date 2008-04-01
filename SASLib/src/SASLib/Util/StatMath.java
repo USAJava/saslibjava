@@ -57,6 +57,10 @@ public class StatMath {
     
 //Tester Method    
 //    public static void main(String [] args){
-//        System.out.println(combination(52,5));
+//        System.out.println(combination(3,0));
+//        System.out.println(combination(3,1));
+//        System.out.println(combination(3,2));
+//        System.out.println(combination(3,3));
+//        System.out.println(combination(3,4));
 //    }
 }
