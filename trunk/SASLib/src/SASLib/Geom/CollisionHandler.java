@@ -119,12 +119,12 @@ public class CollisionHandler {
     public synchronized static boolean checkCollision(final Circle A, final Circle B) {
         try {
             //lets create start and end point circles
-            Circle Asub1 = (Circle) A.copy();
-            Circle Asub2 = (Circle) A.copy();
+            Circle Asub1 = A.copy();
+            Circle Asub2 = A.copy();
             Asub2.move(); // calc final
 
-            Circle Bsub1 = (Circle) B.copy();
-            Circle Bsub2 = (Circle) B.copy();
+            Circle Bsub1 = B.copy();
+            Circle Bsub2 = B.copy();
             Bsub2.move(); //calc final
 
 //            //lets do a fast bounding box check
@@ -143,8 +143,8 @@ public class CollisionHandler {
 
 
             //now lets create our middle point
-            Circle BsubM = (Circle) B.copy();
-            Circle AsubM = (Circle) A.copy();
+            Circle BsubM = B.copy();
+            Circle AsubM = A.copy();
             BsubM.setMoveVec(BsubM.getMoveVec().times(0.5));
             BsubM.move();
             AsubM.setMoveVec(AsubM.getMoveVec().times(0.5));
@@ -244,8 +244,12 @@ public class CollisionHandler {
         dy = one.y - two.y;
         double distsqrd = dx * dx + dy * dy;
 
+        if(distsqrd <= 4.01){
+            rad1 *= 1.0;
+        }
         //check if lessthan or equal to sum of (radius^2)
-        if (distsqrd <= rad1 * rad1 + rad1 * rad1) {
+        double sumrad = rad2 * rad2 + rad1 * rad1;
+        if (distsqrd <= sumrad*sumrad) {
             return true;
         }
 
